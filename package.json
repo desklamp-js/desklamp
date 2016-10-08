@@ -1,0 +1,28 @@
+{
+  "name": "desklamp",
+  "version": "0.0.2",
+  "description": "clean routing and state container for react",
+  "main": "desklamp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/desklamp-js/Desklamp.io.git"
+  },
+  "keywords": [
+    "react",
+    "routing",
+    "router",
+    "persistant",
+    "state",
+    "state",
+    "desklamp"
+  ],
+  "author": "desklamp.io team (http://desklamp.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/desklamp-js/Desklamp.io/issues"
+  },
+  "homepage": "https://github.com/desklamp-js/Desklamp.io#readme"
+}
