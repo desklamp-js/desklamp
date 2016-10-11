@@ -1,6 +1,6 @@
 {
   "name": "desklamp",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "description": "clean routing and state container for react",
   "main": "desklamp.js",
   "scripts": {
@@ -18,10 +18,16 @@
     "state",
     "desklamp"
   ],
-  "author": "desklamp.io team (http://desklamp.io)",
+  "author": "desklamp.io team  (http://desklamp.io)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/desklamp-js/Desklamp.io/issues"
   },
-  "homepage": "https://github.com/desklamp-js/Desklamp.io#readme"
+  "homepage": "https://github.com/desklamp-js/Desklamp.io#readme",
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "react": "^15.3.2"
+  }
 }
