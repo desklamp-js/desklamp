@@ -5,6 +5,9 @@ Desklamp is a React library which provides a state container and easy creation o
 
 To get started, `npm install --save desklamp`. 
 
+### Version: 
+This module is in active development! We will release a few more iterations in the upcoming weeks. Please submit any issues and/or feature requests and we will try to incorporate them.
+
 ### Import What you Need
 
 To set up your own application, start at your topmost component and import the module.
