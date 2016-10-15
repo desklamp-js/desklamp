@@ -172,6 +172,21 @@ The custom functions declared to Desklamp.on will be passed down to your routes 
 ```js
 Desklamp.on(initState, funcs, Nav);
 ```
+Example of a component, `CreatePost`, using its default passed in props and powers:
+```js
+import React from 'react';
+
+const CreatePost = ({state, powers}) => {
+
+  return (
+    <div>
+      <h1>Add a Post</h1>
+      <button onClick={()=>{powers.createPost(state.posts[0])}}>Alert</button>
+    </div>
+  );
+};
+```
+
 <a name="desklampfunctions"></a>
 ## Built in Functions
 
