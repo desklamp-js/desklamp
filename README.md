@@ -10,8 +10,10 @@ Desklamp is a React library which provides a state container and easy creation o
 * Passes developer-defined functions to all children of `<Container />`
 * Robust Desklamp API
 
-[Quick Start](#quickstart)
-[Contribute](#contribute)
+* [Contribute](#contribute)
+* [Getting Started](#gettingstarted)
+* [Creating Routes](#gettingstarted)
+
 
 ## Quick Start <a name="quickstart"></a>
 
@@ -53,11 +55,12 @@ funcs.createPost = (post) => {
 // Pass in your initial state object, funcs object, and your imported Nav
 Desklamp.on(initState, funcs, Nav);
 ```
+<a name="contribute"></a>
 
-### Contribute: <a name="contribute"></a>
+### Contribute: 
 This module is in active development! We will release a few more iterations in the upcoming weeks. Please submit any issues and/or feature requests and we will try to incorporate them. Or reach out to our team on [Gitter](https://gitter.im/desklampio/Lobby)
 
-## Getting Started
+## Getting Started <a name="gettingstarted"></a>
 
 ### Import What you Need
 
@@ -71,7 +74,7 @@ import ReactDOM from 'react-dom';
 `Desklamp` gives you access to our helper methods. 
 `Container` gives you the container component with all the application state.
 
-## Creating Routes
+## Creating Routes <a name="createroutes"></a>
 
 Routing in Desklamp is meant to get you up and running with client-side page navigation and url updates, as well as browser history, as soon as possible. To create basic navigation, simply nest your components inside the `Container` component Desklamp provides. For example, if you want to create routes for components `Home` and `CreatePost`, first define these components as you normally would. Then import them into your index.js file, and then nest them inside the `Container` component like so:
 
