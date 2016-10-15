@@ -10,7 +10,7 @@ Desklamp is a React library which provides a state container and easy creation o
 * Passes developer-defined functions to all children of `<Container />`
 * Robust Desklamp API
 
-* Navigation
+### Navigation
   * [Contribute](#contribute)
   * [Getting Started](#gettingstarted)
   * [Creating Routes](#createroutes)
