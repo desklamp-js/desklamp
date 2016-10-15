@@ -12,7 +12,11 @@ Desklamp is a React library which provides a state container and easy creation o
 
 * [Contribute](#contribute)
 * [Getting Started](#gettingstarted)
-* [Creating Routes](#gettingstarted)
+* [Creating Routes](#createroutes)
+* [Initializing Your Application](#initialize)
+* [Creating Initial State](#createstate)
+* [Creating Custom Functions](#createfunctions)
+* [Creating Custom Navigation](#createnav)
 
 
 ## Quick Start <a name="quickstart"></a>
@@ -60,7 +64,8 @@ Desklamp.on(initState, funcs, Nav);
 ### Contribute: 
 This module is in active development! We will release a few more iterations in the upcoming weeks. Please submit any issues and/or feature requests and we will try to incorporate them. Or reach out to our team on [Gitter](https://gitter.im/desklampio/Lobby)
 
-## Getting Started <a name="gettingstarted"></a>
+<a name="gettingstarted"></a>
+## Getting Started 
 
 ### Import What you Need
 
@@ -74,7 +79,8 @@ import ReactDOM from 'react-dom';
 `Desklamp` gives you access to our helper methods. 
 `Container` gives you the container component with all the application state.
 
-## Creating Routes <a name="createroutes"></a>
+<a name="createroutes"></a>
+## Creating Routes 
 
 Routing in Desklamp is meant to get you up and running with client-side page navigation and url updates, as well as browser history, as soon as possible. To create basic navigation, simply nest your components inside the `Container` component Desklamp provides. For example, if you want to create routes for components `Home` and `CreatePost`, first define these components as you normally would. Then import them into your index.js file, and then nest them inside the `Container` component like so:
 
@@ -89,14 +95,14 @@ ReactDOM.render((
   </Container>
 ), document.getElementById('app'));
 ``` 
-
-## Initializing Your Application
+<a name="initialize"></a>
+## Initializing Your Application 
 
 Desklamp allows you to keep your state in a single _state_ object. 
 Desklamp gives you many options for state control. 
 The _state_ is automatically available to all of your routes.
 This functionality is enabled by the `Desklamp.on()` function.
-
+<a name="createstate"></a>
 ### Create initial state
 
 Create an object representing your initial state. This object represents all data that will be passed down to each route upon render as `props.state`. 
@@ -108,7 +114,7 @@ const initState = {
   userInfo: {},
 };
 ```
-
+<a name="createfunctions"></a>
 ### Declaring custom functions
 
 Declare an object to hold your functions. Any functions added as methods to this object will be automatically bound and passed down to all views upon render as `props.powers`.
@@ -119,6 +125,7 @@ funcs.hello = () => {
     console.log("Hello World")
   }
 ```
+<a name="createnav"></a>
 ### Creating a Custom navigation Component
 
 Create a Navigation React component using our custom `<Link/>` component or simple anchor tags. You can mix and match these two approaches, if you wish to link to an external site or a server route on your navigation, simply use a standard anchor tag.
