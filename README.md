@@ -10,8 +10,10 @@ Desklamp is a React library which provides a state container and easy creation o
 * Passes developer-defined functions to all children of `<Container />`
 * Robust Desklamp API
 
+[Quick Start](#quickstart)
+[Contribute](#contribute)
 
-## Quick Start
+## Quick Start <a name="quickstart"></a>
 
 To get started, `npm install --save desklamp`. 
 
@@ -52,7 +54,7 @@ funcs.createPost = (post) => {
 Desklamp.on(initState, funcs, Nav);
 ```
 
-### Contribute: 
+### Contribute: <a name="contribute"></a>
 This module is in active development! We will release a few more iterations in the upcoming weeks. Please submit any issues and/or feature requests and we will try to incorporate them. Or reach out to our team on [Gitter](https://gitter.im/desklampio/Lobby)
 
 ## Getting Started
@@ -146,17 +148,13 @@ const Nav = () => {
 };
 ```
 
-### Passing Initial State to Desklamp.on()
+### Initializing your App with Desklamp.on()
 
 `Desklamp.on` is the main function you will use to tell Desklamp about your application. This method takes three arguments: the initial state and functions objects we created above, and your `Nav` component. This will declare your initial state, bind your customized functions to the _state_ and display your custom Navbar across all views.
 
-The custom functions declared to Desklamp.on will become your _powers_ which are automatically passed to each one of your views. You can then pass them as props down to child components as selectively as you would like. The initial state will become your _state_, also available to all the routes you have set up in your `Container`.
+The custom functions declared to Desklamp.on will be passed down to your routes as `props.powers`. You can then pass them as props down to child components as selectively as you would like. The initial state will become your `props.state`, also available to all the routes you have set up in your `Container`.
 
-Pass this object as your first parameter to `Desklamp.on()`.
-
-
-
-After creating these components, `Desklamp.on()` will look like this: 
+`Desklamp.on()` will look like this: 
 
 ```js
 Desklamp.on(initState, funcs, Nav);
