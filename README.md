@@ -1,5 +1,5 @@
 # Desklamp
-![desklamp](http://i.imgur.com/dHF01VC.png)
+![desklamp](https://pbs.twimg.com/profile_images/787356890640420869/k9_RzFnT_400x400.jpg)
 ![alt](https://img.shields.io/npm/v/desklamp.svg) ![alt](https://img.shields.io/npm/dt/desklamp.svg)
 
 Desklamp is a React library which provides a state container and easy creation of routes. 
