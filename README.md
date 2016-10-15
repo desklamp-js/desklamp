@@ -1,21 +1,67 @@
 # Desklamp
-
-![alt](https://img.shields.io/npm/v/desklamp.svg) ![alt](https://img.shields.io/npm/dm/v/desklamp.svg)
-
-## Get Started
+![desklamp](http://imgur.com/a/X254J)
+![alt](https://img.shields.io/npm/v/desklamp.svg) ![alt](https://img.shields.io/npm/dt/desklamp.svg)
 
 Desklamp is a React library which provides a state container and easy creation of routes. 
 
+* No external dependencies
+* Provides `<Container />` that creates routes from child components
+* Passes state to all children of `<Container />`
+* Passes developer-defined functions to all children of `<Container />`
+* Robust Desklamp API
+
+
+## Quick Start
+
 To get started, `npm install --save desklamp`. 
 
-### Version: 
-This module is in active development! We will release a few more iterations in the upcoming weeks. Please submit any issues and/or feature requests and we will try to incorporate them.
+```js
+import { Desklamp, Container } from 'desklamp';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// Normal React components
+import Home from './components/Home'; 
+import CreatePost from './components/CreatePost';
+import Nav from './components/Nav'; // custom Nav component that you create (See Nav documentation below)
+
+// Create an initial state object
+const initState = {
+  posts: [],
+};
+
+// Create an object with your custom functions as its methods.
+const funcs = {}
+
+ReactDOM.render((
+  // Child components here become your routable urls
+  <Container>
+    <Home name="home" /> // optional name property for custom route/url name
+    <CreatePost /> // by default, Desklamp will name your route after your component
+  </Container>
+), document.getElementById('app'));
+
+funcs.createPost = (post) => {
+    $.post('http://localhost:3000/newPost', { post }, (data) => {
+      Desklamp.changeView('posts', { posts: data.posts });
+    });
+  }
+
+// Initialize Desklamp below your ReactDOM.render
+// Pass in your initial state object, funcs object, and your imported Nav
+Desklamp.on(initState, funcs, Nav);
+```
+
+### Contribute: 
+This module is in active development! We will release a few more iterations in the upcoming weeks. Please submit any issues and/or feature requests and we will try to incorporate them. Or reach out to our team on [Gitter](https://gitter.im/desklampio/Lobby)
+
+## Getting Started
 
 ### Import What you Need
 
-To set up your own application, start at your topmost component and import the module.
+To set up your own application, start with your `index.js` file and import `Desklamp` and `Container` from the `desklamp` module.
 
-```
+```js
 import { Desklamp, Container } from 'desklamp'; 
 import React from 'react'; 
 import ReactDOM from 'react-dom';
@@ -23,36 +69,34 @@ import ReactDOM from 'react-dom';
 `Desklamp` gives you access to our helper methods. 
 `Container` gives you the container component with all the application state.
 
-## Routes
+## Creating Routes
 
-Routing in Desklamp is meant to get you up and running with client-side page navigation and url updates, as well as browser history, as soon as possible. To create basic navigation, simply render your components inside the `Container` component Desklamp provides. For example, if you want to create routes for components `Home`, `Login`, `Signup` and `Posts`, first define these components as you normally would. Then import them into your index.js file (or wherever you're rendering `Container`), and then nest them inside the `Container` component like so:
+Routing in Desklamp is meant to get you up and running with client-side page navigation and url updates, as well as browser history, as soon as possible. To create basic navigation, simply nest your components inside the `Container` component Desklamp provides. For example, if you want to create routes for components `Home` and `CreatePost`, first define these components as you normally would. Then import them into your index.js file, and then nest them inside the `Container` component like so:
 
-```
+```js
+import Home from './components/Home';
+import CreatePost from './components/CreatePost';
+
 ReactDOM.render((
   <Container>
     <Home /> //creates route /home
-    <Login />
-    <Signup />
-    <Posts />
+    <CreatePost />
   </Container>
 ), document.getElementById('app'));
 ``` 
 
-## State Container
+## Initializing Your Application
 
-Desklamp allows you to keep your state in a single object which we call _appstate_. 
+Desklamp allows you to keep your state in a single _state_ object. 
 Desklamp gives you many options for state control. 
-The _appstate_ is automatically available to all of your routes.
+The _state_ is automatically available to all of your routes.
+This functionality is enabled by the `Desklamp.on()` function.
 
-`Desklamp.on` is the main function you will use to tell Desklamp about your application. This method takes three arguments, representing the initial state (must be an object), and your custom functions (must be an object), and your `Navbar` component. This will declare your initial state, bind your customized functions to the _appstate_ and display your custom Navbar across all views.
+### Create initial state
 
-The custom functions declared to Desklamp.on will become your _powers_ which are automatically passed to each one of your views. You can then pass them as props down to child components as selectively as you would like. The initial state will become your _state_, also available to all the routes you have set up in your `Container`.
+Create an object representing your initial state. This object represents all data that will be passed down to each route upon render as `props.state`. 
 
-### Passing Initial State to Desklamp.on()
-
-Create an object representing your initial state. Pass this object as your first parameter to `Desklamp.on()`.
-
-```
+```js
 const initState = {
   username: '',
   posts: [],
@@ -60,28 +104,29 @@ const initState = {
 };
 ```
 
-### Declaring custom functions for Desklamp.on()
+### Declaring custom functions
 
-Declare an object to hold your functions. Pass this object as the second parameter to `Desklamp.on()`. Any functions added as methods to this object will be automatically bound and passed down to all views upon render, making them available under `props.powers`.
-```
+Declare an object to hold your functions. Any functions added as methods to this object will be automatically bound and passed down to all views upon render as `props.powers`.
+
+```js
 const funcs = {};
 funcs.hello = () => {
     console.log("Hello World")
   }
 ```
-### Passing a custom Navbar component to Desklamp.on()
+### Creating a Custom navigation Component
 
-Create a Navigation React component and pass it as the third parameter to `Desklamp.on()`. If you would like to link to your other routes, make sure to use our custom `<Link />` component or put `#/` in front of your href attribute.
-```
+Create a Navigation React component using our custom `<Link/>` component or simple anchor tags. You can mix and match these two approaches, if you wish to link to an external site or a server route on your navigation, simply use a standard anchor tag.
+
+```jsx
 // example using Desklamp's provided <Link/> tags
 const Nav = () => {
   return (
     <nav className="nav">
       <ul>
         <li><Link view={'/home'} tag={'home'} /></li>
-        <li><Link view={'/login'} tag={'login'} /></li>
-        <li><Link view={'/posts'} tag={'posts'} /></li>
-        <li><Link view={'/signup'} tag={'sign-up'} /></li>
+        <li><Link view={'/createpost'} tag={'add post'} /></li> <!-- view is the name you gave the route in ReactDom.render(), tag is the display text of the link -->
+        <li><a href="https://github.com/desklamp-js/desklamp">Desklamp Github</a></li>
       </ul>
     </nav>
   );
@@ -92,19 +137,28 @@ const Nav = () => {
   return (
     <nav className="nav">
       <ul>
-        <li><a href="#/home>Home</a></li>
-        <li><a href="#/login>Login</a></li>
-        <li><a href="#/posts>Posts</a></li>
-        <li><a href="#/signup>Signup</a></li>
+        <li><a href="#/home">home</a></li> <!-- Desklamp routes should begin with `#` -->
+        <li><a href="#/createposts">add post</a></li>
+        <li><a href="https://github.com/desklamp-js/desklamp">Desklamp Github</a></li>
       </ul>
     </nav>
   );
 };
-
 ```
+
+### Passing Initial State to Desklamp.on()
+
+`Desklamp.on` is the main function you will use to tell Desklamp about your application. This method takes three arguments: the initial state and functions objects we created above, and your `Nav` component. This will declare your initial state, bind your customized functions to the _state_ and display your custom Navbar across all views.
+
+The custom functions declared to Desklamp.on will become your _powers_ which are automatically passed to each one of your views. You can then pass them as props down to child components as selectively as you would like. The initial state will become your _state_, also available to all the routes you have set up in your `Container`.
+
+Pass this object as your first parameter to `Desklamp.on()`.
+
+
 
 After creating these components, `Desklamp.on()` will look like this: 
-```
+
+```js
 Desklamp.on(initState, funcs, Nav);
 ```
 
@@ -132,7 +186,7 @@ Desklamp provides some helper methods to make changing views easy.
 
 Desklamp provides `<Link/>` components for you to use to refer to your views. These components take a `view` property referring to the route (without the `#`) and `tag` refers to the displayed text of the link.
 
-```
+```js
 <Link view={'/home'} tag={'home'} />
 ```
 
