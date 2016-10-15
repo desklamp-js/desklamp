@@ -148,8 +148,7 @@ const Nav = () => {
 };
 
 // example using normal anchor tags
-const Nav = () => {
-  return (
+const Nav = () => (
     <nav className="nav">
       <ul>
         <li><a href="#/home">home</a></li> <!-- Desklamp routes should begin with `#` -->
@@ -158,7 +157,6 @@ const Nav = () => {
       </ul>
     </nav>
   );
-};
 ```
 <a name="desklampon"></a>
 ### Initializing your App with Desklamp.on()
@@ -176,15 +174,12 @@ Example of a component, `CreatePost`, using its default passed in props and powe
 ```js
 import React from 'react';
 
-const CreatePost = ({state, powers}) => {
-
-  return (
+const CreatePost = ({ state, powers }) => (
     <div>
       <h1>Add a Post</h1>
-      <button onClick={()=>{powers.createPost(state.posts[0])}}>Alert</button>
+      <button onClick={() =>  powers.createPost(state.posts[0])}>Alert</button>
     </div>
   );
-};
 ```
 
 <a name="desklampfunctions"></a>
@@ -193,7 +188,15 @@ const CreatePost = ({state, powers}) => {
 Desklamp provides some helper methods to make changing views easy.
 
 ### Desklamp.changeView()
-`Desklamp.changeView()` is a function that takes a string representation of the view or component you wish to switch to. It also takes in an optional second parameter that is an object. This object will be automatically called with the Desklamp.updateState() function to update the state of your application before the route of your application switches. This was constructed with the hopes of resolving issues of when to change state and reducing the issue of React.js components trying to mount with no called upon state inside of them.
+`Desklamp.changeView()` is a function that takes as the first parameter the string name of the route you wish to switch to. The optional second parameter is an object representing the state change you wish to make. This object will be automatically passed to Desklamp.updateState() to update the state of your application before routing. This function allows the developer to make asynchronous calls and change the view only after data is returned.
+
+```js
+createPost: (post) => {
+    $.post('http://localhost:3000/newPost', { post }, (data) => {
+      Desklamp.changeView('posts', { posts: data.posts }); // call Desklamp.changeView() on successful response
+    });
+  }
+```
 
 ### Desklamp.onLoad()
 `Desklamp.onLoad()` takes any number of functions and runs them in the `componentWillMount` section of the Container component. This allows you, the developer to run functions on the initial loading of the application at the highest level.
