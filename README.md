@@ -10,14 +10,18 @@ Desklamp is a React library which provides a state container and easy creation o
 * Passes developer-defined functions to all children of `<Container />`
 * Robust Desklamp API
 
-* [Contribute](#contribute)
-* [Getting Started](#gettingstarted)
-* [Creating Routes](#createroutes)
-* [Initializing Your Application](#initialize)
-* [Creating Initial State](#createstate)
-* [Creating Custom Functions](#createfunctions)
-* [Creating Custom Navigation](#createnav)
-* [Initializing App with Desklamp.on](#desklampon)
+* Navigation
+  * [Contribute](#contribute)
+  * [Getting Started](#gettingstarted)
+  * [Creating Routes](#createroutes)
+  * [Initializing Your Application](#initialize)
+    * [Creating Initial State](#createstate)
+    * [Creating Custom Functions](#createfunctions)
+    * [Creating Custom Navigation](#createnav)
+    * [Initializing App with Desklamp.on](#desklampon)
+  * [Built In Functions](#desklampfunctions)
+  * [Built In Components](#desklampcomponents)
+  * [Extra Features](#features)
 
 
 ## Quick Start <a name="quickstart"></a>
@@ -51,9 +55,7 @@ ReactDOM.render((
 ), document.getElementById('app'));
 
 funcs.createPost = (post) => {
-    $.post('http://localhost:3000/newPost', { post }, (data) => {
-      Desklamp.changeView('posts', { posts: data.posts });
-    });
+    alert(post);
   }
 
 // Initialize Desklamp below your ReactDOM.render
@@ -170,7 +172,7 @@ The custom functions declared to Desklamp.on will be passed down to your routes 
 ```js
 Desklamp.on(initState, funcs, Nav);
 ```
-
+<a name="desklampfunctions"></a>
 ## Built in Functions
 
 Desklamp provides some helper methods to make changing views easy.
@@ -190,7 +192,7 @@ Desklamp provides some helper methods to make changing views easy.
 ### Desklamp.history()
 `Desklamp.history()` is a function that runs automatically when the state of your application changes and stores the previous version of your state. This is an incredibly useful function for debugging or setting the state with any custom state object that you wish.
 
-
+<a name="desklampcomponents"></a>
 ## Built in Components
 
 Desklamp provides `<Link/>` components for you to use to refer to your views. These components take a `view` property referring to the route (without the `#`) and `tag` refers to the displayed text of the link.
@@ -198,7 +200,7 @@ Desklamp provides `<Link/>` components for you to use to refer to your views. Th
 ```js
 <Link view={'/home'} tag={'home'} />
 ```
-
+<a name="features"></a>
 ## Additional Features
 History keeps track of all application state
 
