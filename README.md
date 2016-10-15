@@ -17,6 +17,7 @@ Desklamp is a React library which provides a state container and easy creation o
 * [Creating Initial State](#createstate)
 * [Creating Custom Functions](#createfunctions)
 * [Creating Custom Navigation](#createnav)
+* [Initializing App with Desklamp.on](#desklampon)
 
 
 ## Quick Start <a name="quickstart"></a>
@@ -126,7 +127,7 @@ funcs.hello = () => {
   }
 ```
 <a name="createnav"></a>
-### Creating a Custom navigation Component
+### Creating a Custom Navigation Component
 
 Create a Navigation React component using our custom `<Link/>` component or simple anchor tags. You can mix and match these two approaches, if you wish to link to an external site or a server route on your navigation, simply use a standard anchor tag.
 
@@ -157,7 +158,7 @@ const Nav = () => {
   );
 };
 ```
-
+<a name="desklampon"></a>
 ### Initializing your App with Desklamp.on()
 
 `Desklamp.on` is the main function you will use to tell Desklamp about your application. This method takes three arguments: the initial state and functions objects we created above, and your `Nav` component. This will declare your initial state, bind your customized functions to the _state_ and display your custom Navbar across all views.
