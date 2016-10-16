@@ -1,6 +1,7 @@
 # Desklamp
 ![desklamp](https://pbs.twimg.com/profile_images/787356890640420869/k9_RzFnT_400x400.jpg)
 ![alt](https://img.shields.io/npm/v/desklamp.svg) ![alt](https://img.shields.io/npm/dt/desklamp.svg)
+Please help us improve Desklamp by filling out our [Feedback Survey](https://goo.gl/forms/tHYzymaXwLCHghSt1)
 
 Desklamp is a React library which provides a state container and easy creation of routes. 
 
@@ -202,28 +203,34 @@ createPost: (post) => {
 `Desklamp.onLoad()` takes any number of functions and runs them in the `componentWillMount` section of the Container component. This allows you, the developer to run functions on the initial loading of the application at the highest level.
 
 ### Desklamp.updateState()
-`Desklamp.updateState()` is a function that allows you to update the state of your application from within your custom functions. `Desklamp.updateState()` takes in an object of the values you would like to change in your state. By default Desklamp.updateState maintains immutability and creates an new object with all of the changes before called the default React.js setState function.
+`Desklamp.updateState()` is a function that allows you to update the state of your application from within your custom functions. `Desklamp.updateState()` takes in an object of the values you would like to change in your state. By default Desklamp.updateState maintains immutability and creates an new object with all of the changes before calling the default React.js setState function.
+
+```js
+const initState = {
+  username: '',
+  posts: [],
+  userInfo: {},
+}
+Desklamp.updateState({ username:"Harry" }); // maintains immutability by creating a new state object with username "Harry"
+```
 
 ### Desklamp.showState()
-`Desklamp.showState()` is a simple function that can be called anywhere in your application to show the current state. It can be very useful for debugging and logging what your state looks like if you are experiencing issues with your state data not looking how you think it should.
-
-### Desklamp.history()
-`Desklamp.history()` is a function that runs automatically when the state of your application changes and stores the previous version of your state. This is an incredibly useful function for debugging or setting the state with any custom state object that you wish.
+`Desklamp.showState()` is a simple function that can be called anywhere in your application to show the current state. It can be very useful for debugging and logging what your state looks like if you are experiencing issues with your state data not looking how you think it should. The function call returns the current state object.
 
 <a name="desklampcomponents"></a>
 ## Built in Components
 
-Desklamp provides `<Link/>` components for you to use to refer to your views. These components take a `view` property referring to the route (without the `#`) and `tag` refers to the displayed text of the link.
+Desklamp provides `<Link/>` components to link to your routes. These components take a `view` property referring to the route (without the `#`) and `tag` refers to the displayed text of the link.
 
 ```js
 <Link view={'/home'} tag={'home'} />
 ```
 <a name="features"></a>
-## Additional Features
-History keeps track of all application state
+## Upcoming Features
+Desklamp automatically keeps track of a history of application state. Currently developing useful rollback of state and exposure of history object to the developer.
 
-## Debugging
-We are adding error handling messages to help you debug.
+### Debugging
+We are continually adding and improving error handling messages to help with debugging. Please submit any suggestions or requests to help us improve our error messages.
 
 ### Misc
 A floor lamp is a desk lamp if you put it on your desk.
