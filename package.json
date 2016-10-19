@@ -1,9 +1,10 @@
 {
   "name": "desklamp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "clean routing and state container for react",
-  "main": "desklamp.js",
+  "main": "desklamp.jsx",
   "scripts": {
+    "compile": "babel --presets es2015,react -d lib/ src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
