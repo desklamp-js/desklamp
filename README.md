@@ -16,6 +16,7 @@ Desklamp is a React library which provides a state container and easy creation o
   * [Contribute](#contribute)
   * [Getting Started](#gettingstarted)
   * [Creating Routes](#createroutes)
+    * [Creating Nested Routes](#nestedroutes)
   * [Initializing Your Application](#initialize)
     * [Creating Initial State](#createstate)
     * [Creating Custom Functions](#createfunctions)
@@ -30,7 +31,7 @@ Desklamp is a React library which provides a state container and easy creation o
 
 To get started, `npm install --save desklamp`. 
 
-```js
+```jsx
 import { Desklamp, Container } from 'desklamp';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -89,7 +90,7 @@ import ReactDOM from 'react-dom';
 
 Routing in Desklamp is meant to get you up and running with client-side page navigation and url updates, as well as browser history, as soon as possible. To create basic navigation, simply nest your components inside the `Container` component Desklamp provides. For example, if you want to create routes for components `Home` and `CreatePost`, first define these components as you normally would. Then import them into your index.js file, and then nest them inside the `Container` component like so:
 
-```js
+```jsx
 import Home from './components/Home';
 import CreatePost from './components/CreatePost';
 
@@ -100,6 +101,22 @@ ReactDOM.render((
   </Container>
 ), document.getElementById('app'));
 ``` 
+<a name="nestedroutes"></a>
+### Nested Routes
+
+To create a nested route (like `/home/homey`), simply nest the `<Homey />` component inside of the `<Home />` component within `<Container/>` and your route will be created accordingly.
+
+```jsx
+ReactDOM.render((
+  <Container>
+    <Home> // open tag for `/home`
+      <Homey /> // this is the child of Home and creates the route `/home/homey`
+    </Home> //closing tag for `/home`
+    <CreatePost />
+  </Container>
+), document.getElementById('app'));
+```
+
 <a name="initialize"></a>
 ## Initializing Your Application 
 
@@ -124,7 +141,7 @@ const initState = {
 
 Declare an object to hold your functions. Any functions added as methods to this object will be automatically bound and passed down to all views upon render as `props.powers`.
 
-```js
+```jsx
 const funcs = {};
 funcs.hello = () => {
     console.log("Hello World")
@@ -173,7 +190,7 @@ The custom functions declared to Desklamp.on will be passed down to your routes 
 Desklamp.on(initState, funcs, Nav);
 ```
 Example of a component, `CreatePost`, using its default passed in props and powers:
-```js
+```jsx
 import React from 'react';
 
 const CreatePost = ({ state, powers }) => (
@@ -221,11 +238,31 @@ Desklamp.updateState({ username:"Harry" }); // maintains immutability by creatin
 <a name="desklampcomponents"></a>
 ## Built in Components
 
+### <Link />
 Desklamp provides `<Link/>` components to link to your routes. These components take a `view` property referring to the route (without the `#`) and `tag` refers to the displayed text of the link.
 
-```js
+```jsx
 <Link view={'/home'} tag={'home'} />
 ```
+
+### <AsyncLink />
+If you load data in your state or make other asynchronous calls before changing views, use `<AsyncLink/>` rather than `<Link/>`. This works well for 'get' requests. This component takes the same `view` and `tag` props as the `<Link />` component, as well as an additional prop called `func`. The `func` prop will be the function to be executed prior to the view rendering.
+
+```jsx
+
+// you can define this function as part of your `powers` which will be passed in as a prop to the Navigation component. 
+// declaring it in the `<Nav />` file will also work.
+function getPosts() {
+    $.get('http://localhost:3000/posts', (postsData) => {
+      Desklamp.updateState({
+        posts: postsData,
+      });
+    });
+  }
+
+<AsyncLink view={'/login'} tag={'login'} func={getPosts} /> 
+```
+
 <a name="features"></a>
 ## Upcoming Features
 Desklamp automatically keeps track of a history of application state. Currently developing useful rollback of state and exposure of history object to the developer.
