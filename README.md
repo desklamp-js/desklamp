@@ -232,8 +232,8 @@ const initState = {
 Desklamp.updateState({ username:"Harry" }); // maintains immutability by creating a new state object with username "Harry"
 ```
 
-### Desklamp.showState()
-`Desklamp.showState()` is a simple function that can be called anywhere in your application to show the current state. It can be very useful for debugging and logging what your state looks like if you are experiencing issues with your state data not looking how you think it should. The function call returns the current state object.
+### Desklamp.getState()
+`Desklamp.getState()` is a simple function that can be called anywhere in your application to show the current state. It can be very useful for debugging and logging what your state looks like if you are experiencing issues with your state data not looking how you think it should. The function call returns the current state object.
 
 <a name="desklampcomponents"></a>
 ## Built in Components
