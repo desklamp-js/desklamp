@@ -36,11 +36,11 @@ class Container extends React.Component {
     Desklamp.changeView = this.changeView;
     this.routeLink = this.routeLink.bind(this);
     this.getRoutes = this.getRoutes.bind(this);
-    // Adds updateState and showState funcs to Desklamp obj
+    // Adds updateState and getState funcs to Desklamp obj
     this.updateState = this.updateState.bind(this);
     Desklamp.updateState = this.updateState;
-    this.showState = this.showState.bind(this);
-    Desklamp.showState = this.showState;
+    this.getState = this.getState.bind(this);
+    Desklamp.getState = this.getState;
     // Adds history to Desklamp obj
     this.history = this.history.bind(this);
     Desklamp.history = this.history;
@@ -156,7 +156,7 @@ class Container extends React.Component {
   }
 
     // Displays the current application state
-  showState() {
+  getState() {
     return this.state.appState;
   }
 
@@ -252,4 +252,3 @@ export { Container };
 export { Desklamp };
 export { Link };
 export { AsyncLink };
-

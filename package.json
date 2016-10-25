@@ -1,6 +1,6 @@
 {
   "name": "desklamp",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "clean routing and state container for react",
   "main": "desklamp.js",
   "scripts": {
