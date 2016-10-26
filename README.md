@@ -272,3 +272,5 @@ We are continually adding and improving error handling messages to help with deb
 
 ### Misc
 A floor lamp is a desk lamp if you put it on your desk.
+
+Here are some blog posts offering a tutorial walk through: [Desklamp: All-in-one routing and immutable state library for React.](https://medium.com/@MKulinski/desklamp-all-in-one-routing-and-immutable-state-library-for-react-47b23821c20#.opngfavlo), and a [React app built 3 ways](https://medium.com/@sneakykate/react-routing-and-state-3-ways-part-3-desklamp-1facca96ac33#.flpdclqkz).
